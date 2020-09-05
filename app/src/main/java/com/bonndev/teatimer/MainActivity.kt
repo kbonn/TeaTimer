@@ -29,6 +29,20 @@ class MainActivity : AppCompatActivity() {
     private fun startTimer() {
         timerState = TimerState.Running
 
+        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                secondsRemaining = millisUntilFinished / 1000
+            }
+
+            override fun onFinish() {
+                onTimerFinished()
+            }
+        }
+
+    }
+
+    private fun onTimerFinished() {
 
     }
 
