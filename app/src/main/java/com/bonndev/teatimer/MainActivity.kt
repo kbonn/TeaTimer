@@ -56,8 +56,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         play_button.setOnClickListener {
-            startTimer()
-            timerState = TimerState.Running
+            if (timerState != TimerState.Running) {
+                startTimer()
+                timerState = TimerState.Running
+            }
         }
 
         pause_button.setOnClickListener {
@@ -134,7 +136,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initTimer() {
-        timerState = PrefUtil.getTimerState(this)
+//        timerState = PrefUtil.getTimerState(this)
 
         if (timerState == TimerState.Stopped)
             setNewTimerLength()
