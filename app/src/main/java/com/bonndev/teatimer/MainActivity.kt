@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import com.bonndev.teatimer.util.PrefUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,19 +22,52 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        black_tea_button.setOnClickListener { v ->
+        black_tea_button.setOnClickListener {
+            if (timerState == TimerState.Running || timerState == TimerState.Paused) {
+                timer.cancel()
+                onTimerFinished()
+            }
+            PrefUtil.setTimerLength(4L, this)
+            initTimer()
             startTimer()
             timerState = TimerState.Running
         }
 
         green_tea_button.setOnClickListener {
+            if (timerState == TimerState.Running || timerState == TimerState.Paused) {
+                timer.cancel()
+                onTimerFinished()
+            }
+            PrefUtil.setTimerLength(3L, this)
+            initTimer()
             startTimer()
             timerState = TimerState.Running
         }
 
         white_tea_button.setOnClickListener {
+            if (timerState == TimerState.Running || timerState == TimerState.Paused) {
+                timer.cancel()
+                onTimerFinished()
+            }
+            PrefUtil.setTimerLength(2L, this)
+            initTimer()
             startTimer()
             timerState = TimerState.Running
+        }
+
+        play_button.setOnClickListener {
+            startTimer()
+            timerState = TimerState.Running
+        }
+
+        pause_button.setOnClickListener {
+            timer.cancel()
+            timerState = TimerState.Paused
+        }
+
+        stop_button.setOnClickListener {
+            timer.cancel()
+            onTimerFinished()
         }
     }
 
@@ -48,8 +82,6 @@ class MainActivity : AppCompatActivity() {
 
         if (timerState == TimerState.Running) {
             timer.cancel()
-        } else if (timerState == TimerState.Paused) {
-
         }
 
         PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this)
@@ -75,7 +107,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun onTimerFinished() {
         timerState = TimerState.Stopped
-
         setNewTimerLength()
 
         PrefUtil.setSecondsRemaining(timerLengthSeconds, this)

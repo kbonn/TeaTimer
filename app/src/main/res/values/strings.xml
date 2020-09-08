@@ -3,4 +3,7 @@
     <string name="white_tea">White Tea</string>
     <string name="green_tea">Green Tea</string>
     <string name="black_tea">Black Tea</string>
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
 </resources>

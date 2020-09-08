@@ -10,33 +10,23 @@
         android:id="@+id/countdown_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="10:00"
         android:textSize="70sp"
         app:layout_constraintBottom_toTopOf="@+id/black_tea_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10:00" />
 
     <Button
         android:id="@+id/black_tea_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/black_tea"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/green_tea_button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/green_tea_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/green_tea"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pause_button"
+        app:layout_constraintBottom_toTopOf="@id/green_tea_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/black_tea_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="414dp" />
 
     <Button
         android:id="@+id/white_tea_button"
@@ -46,6 +36,47 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/green_tea_button" />
+
+    <Button
+        android:id="@+id/green_tea_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/green_tea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/white_tea_button"
         app:layout_constraintTop_toBottomOf="@+id/black_tea_button" />
+
+    <ImageButton
+        android:id="@+id/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countdown_textview"
+        app:srcCompat="@drawable/ic_baseline_play_circle_outline_24" />
+
+    <ImageButton
+        android:id="@+id/pause_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/pause"
+        app:layout_constraintEnd_toStartOf="@+id/stop_button"
+        app:layout_constraintStart_toEndOf="@+id/play_button"
+        app:layout_constraintTop_toTopOf="@+id/play_button"
+        app:srcCompat="@drawable/ic_baseline_pause_circle_outline_24" />
+
+    <ImageButton
+        android:id="@+id/stop_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:contentDescription="@string/stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pause_button"
+        app:srcCompat="@drawable/ic_baseline_stop_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

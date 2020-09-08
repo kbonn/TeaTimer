@@ -6,11 +6,21 @@ import com.bonndev.teatimer.MainActivity
 
 class PrefUtil {
     companion object {
-        fun getTimerLength(context: Context): Int {
-            return 1
+
+        private const val INITIAL_TIMER_ID = "com.bonndev.teatimer.initial_timer"
+
+        fun setTimerLength(length: Long, context: Context) {
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(INITIAL_TIMER_ID, length)
+            editor.apply()
         }
 
-        private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.example.teatimer.previous_timer_length"
+        fun getTimerLength(context: Context): Long {
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getLong(INITIAL_TIMER_ID, 0)
+        }
+
+        private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.bonndev.teatimer.previous_timer_length"
 
         fun getPreviousTimerLengthSeconds(context: Context): Long {
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -23,7 +33,7 @@ class PrefUtil {
             editor.apply()
         }
 
-        private const val TIMER_STATE_ID = "com.example.teatimer.timer_state"
+        private const val TIMER_STATE_ID = "com.bonndev.teatimer.timer_state"
 
         fun getTimerState(context: Context): MainActivity.TimerState {
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -38,7 +48,7 @@ class PrefUtil {
             editor.apply()
         }
 
-        private const val SECONDS_REMAINING_ID = "com.example.teatimer.previous_timer_length"
+        private const val SECONDS_REMAINING_ID = "com.bonndev.teatimer.previous_timer_length"
 
         fun getSecondsRemaining(context: Context): Long {
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
